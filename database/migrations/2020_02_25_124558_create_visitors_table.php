@@ -15,6 +15,15 @@ class CreateVisitorsTable extends Migration
     {
         Schema::create('visitors', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('surname');
+            $table->string('name');
+            $table->string('patronymic')->nullable();
+            $table->date('birthday')->nullable();
+            $table->string('skin_color')->nullable();
+            $table->string('hair_color')->nullable();
+            $table->string('gormons')->nullable();
+            $table->string('weight')->nullable();
+            $table->string('contraindication')->nullable();
             $table->timestamps();
         });
     }
