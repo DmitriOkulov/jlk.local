@@ -41,7 +41,19 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('users_admin.show', $user);
+        return redirect()->route('admin.users.show', $user);
+    }
+
+    public function edit(User $user)
+    {
+        return view('admin.users.edit', compact('user'));
+    }
+
+    public function update(Request $request, User $user)
+    {
+        $user->update($request->only(['name', 'password']));
+
+        return redirect()->route('admin.users.show', $user)->with('status', 'Информация изменена');;
     }
 
     public function show(User $user)
@@ -49,14 +61,6 @@ class UserController extends Controller
         return view('admin.users.show', compact('user'));
     }
 
-
-    public function update(Request $request, User $user)
-    {
-        if ($request['password']) {
-            $user->update($request->only(['password']));
-        }
-        return redirect()->route('users_admin.show', $user)->with('status', 'Информация изменена');
-    }
 
     public function destroy(User $user)
     {
