@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LaserEpilation extends Model
+class Weight extends Model
 {
     protected $fillable = [
-        'email', 'password', 'role', 'name'
+        'date', 'value', 'measure', 'id_visitor', 'id_user'
     ];
 }

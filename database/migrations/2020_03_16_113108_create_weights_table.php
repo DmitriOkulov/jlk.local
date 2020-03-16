@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLaserEpilationsTable extends Migration
+class CreateWeightsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateLaserEpilationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('laser_epilations', function (Blueprint $table) {
+        Schema::create('weights', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
-            $table->string('zone');
-            
-            $table->string('comment')->nullable();
+            $table->string('value');
+            $table->text('measure');
             $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();
@@ -36,6 +35,6 @@ class CreateLaserEpilationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laser_epilations');
+        Schema::dropIfExists('weights');
     }
 }

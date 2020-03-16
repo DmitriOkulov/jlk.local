@@ -15,7 +15,18 @@ class CreateMiostimulationsTable extends Migration
     {
         Schema::create('miostimulations', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->date('date');
+            $table->string('zone');
+            $table->string('program');
+            $table->string('power')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
+
+            $table->bigInteger('id_visitor')->unsigned();
+            $table->foreign('id_visitor')->references('id')->on('visitors');
+
+            $table->bigInteger('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

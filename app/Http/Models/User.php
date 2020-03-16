@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,10 +37,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public static function new($name = '', $email, $password, $role): self
+    public static function new($email, $password, $role): self
     {
         return static::create([
-            'name' => $name,
+            'name' => $email,
             'email' => $email,
             'password' => bcrypt($password),
             'role' => $role,

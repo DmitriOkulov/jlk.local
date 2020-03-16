@@ -15,7 +15,14 @@ class CreateMassagesTable extends Migration
     {
         Schema::create('massages', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('comment')->nullable();
             $table->timestamps();
+
+            $table->bigInteger('id_visitor')->unsigned();
+            $table->foreign('id_visitor')->references('id')->on('visitors');
+
+            $table->bigInteger('id_user')->unsigned();
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

@@ -18,11 +18,11 @@ class CreateVisitorsTable extends Migration
             $table->string('surname');
             $table->string('name');
             $table->string('patronymic')->nullable();
+            $table->string('phone')->nullable();
             $table->date('birthday')->nullable();
             $table->string('skin_color')->nullable();
             $table->string('hair_color')->nullable();
             $table->string('gormons')->nullable();
-            $table->string('weight')->nullable();
             $table->string('contraindication')->nullable();
             $table->timestamps();
         });

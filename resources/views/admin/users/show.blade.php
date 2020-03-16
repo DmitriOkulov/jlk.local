@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
             <div class="d-flex flex-row mb-3">
                 <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary mr-1">Редактировать</a>
 
@@ -34,6 +32,6 @@
                 <tbody>
                 </tbody>
             </table>
-        </div>
-    </div>
+
+            
 @endsection
