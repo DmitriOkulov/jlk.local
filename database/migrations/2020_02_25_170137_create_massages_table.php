@@ -15,7 +15,10 @@ class CreateMassagesTable extends Migration
     {
         Schema::create('massages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('comment')->nullable();
+            $table->date('date');
+            $table->string('power');
+            $table->string('length')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();

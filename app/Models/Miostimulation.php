@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Miostimulation extends Model
 {
     protected $fillable = [
-        'email', 'password', 'role', 'name'
+        'date', 'power', 'comment', 'id_user', 'id_visitor', 'zone', 'program'
     ];
 }

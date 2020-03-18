@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Massage extends Model
 {
     protected $fillable = [
-        'email', 'password', 'role', 'name'
+        'date', 'power', 'length', 'comment', 'id_user', 'id_visitor'
     ];
 }

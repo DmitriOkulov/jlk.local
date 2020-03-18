@@ -16,8 +16,8 @@ class CreateWeightsTable extends Migration
         Schema::create('weights', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
-            $table->string('value');
-            $table->text('measure');
+            $table->string('value')->nullable();
+            $table->text('measure')->nullable();
             $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();

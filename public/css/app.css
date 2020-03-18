@@ -10888,3 +10888,14 @@ form {
   width: 100%;
 }
 
+h1 {
+  width: 100%;
+  display: block;
+}
+
+textarea,
+select {
+  display: block;
+  width: 100%;
+}
+

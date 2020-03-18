@@ -16,7 +16,7 @@
             <label for="name" class="col-form-label">Имя</label>
             <input id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" type="text" value="{{ old('name') }}" required>
             @if ($errors->has('name'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('surname') }}</strong></span>
+                <span class="invalid-feedback"><strong>{{ $errors->first('name') }}</strong></span>
             @endif
         </div>
 

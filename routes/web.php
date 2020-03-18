@@ -28,6 +28,7 @@ Auth::routes(['register' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('visitors', 'Visitors\VisitorsController');
+Route::resource('laserepilation', 'Procedures\LaserEpilationController');
 Route::resource('weights', 'Visitors\WeightsController')->only([ 'store', 'destroy', 'create']);
 
 

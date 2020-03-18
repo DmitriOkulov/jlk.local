@@ -7,7 +7,7 @@
 
         <div class="form-group">
             <label for="date" class="col-form-label">Дата измерения</label>
-            <input id="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" type="date" value="{{ old('date') }}">
+            <input id="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" type="date" value="{{ old('date') }}" required>
             @if ($errors->has('date'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('date') }}</strong></span>
             @endif
@@ -15,7 +15,7 @@
 
         <div class="form-group">
             <label for="value" class="col-form-label">Вес</label>
-            <input id="value" class="form-control{{ $errors->has('value') ? ' is-invalid' : '' }}" name="value" type="text" value="{{ old('value') }}" required>
+            <input id="value" class="form-control{{ $errors->has('value') ? ' is-invalid' : '' }}" name="value" type="text" value="{{ old('value') }}">
             @if ($errors->has('value'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('value') }}</strong></span>
             @endif
@@ -23,7 +23,7 @@
 
         <div class="form-group">
             <label for="measure" class="col-form-label">Измерения</label>
-            <input id="measure" class="form-control{{ $errors->has('measure') ? ' is-invalid' : '' }}" name="measure" type="text" value="{{ old('measure') }}" required>
+            <input id="measure" class="form-control{{ $errors->has('measure') ? ' is-invalid' : '' }}" name="measure" type="text" value="{{ old('measure') }}">
             @if ($errors->has('measure'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('measure') }}</strong></span>
             @endif
