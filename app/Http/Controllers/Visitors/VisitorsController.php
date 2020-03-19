@@ -55,7 +55,6 @@ class VisitorsController extends Controller
     public function show(Visitor $visitor)
     {
         $weights = Weight::where('id_visitor', $visitor->id)->get();
-
         return view('visitors.show', compact('visitor', 'weights'));
 
     }

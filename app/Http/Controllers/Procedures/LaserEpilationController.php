@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Procedures;
 
 use App\Models\User;
 use App\Models\Visitor;
-use App\Models\Weight;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,38 +31,38 @@ class LaserEpilationController extends Controller
 
     public function store(Request $request)
     {
-        $laserEpilation = new LaserEpilation($request->toArray());
-        $laserEpilation->save();
+        $laserepilation = new LaserEpilation($request->toArray());
+        $laserepilation->save();
 
-        return redirect()->route('laserepilation.show', $laserEpilation->id_visitor);
+        return redirect()->route('laserepilation.show', $laserepilation);
     }
 
-    public function edit(LaserEpilation $laserEpilation)
+    public function edit(LaserEpilation $laserepilation)
     {
         $visitors = Visitor::all();
-        return view('visitors.edit', compact('laserEpilation', 'visitors'));
+        return view('laserepilation.edit', $laserepilation, compact('laserepilation', 'visitors'));
     }
 
-    public function update(Request $request, LaserEpilation $laserEpilation)
+    public function update(Request $request, LaserEpilation $laserepilation)
     {
         if(Auth::user()->isAdmin()) {
-            $laserEpilation->update($request->only(['date', 'percent', 'comment', 'id_user', 'id_visitor', 'zone', 'ms', 'gc']));
+            $laserepilation->update($request->only(['date', 'percent', 'comment', 'id_user', 'id_visitor', 'zone', 'ms', 'gc']));
         }
-        return redirect()->route('laserepilation.show', $laserEpilation)->with('status', 'Информация изменена');
+        return redirect()->route('laserepilation.show', $laserepilation)->with('status', 'Информация изменена');
     }
 
-    public function show(LaserEpilation $laserEpilation)
+    public function show(LaserEpilation $laserepilation)
     {
-        $visitor = Visitor::where('id', $laserEpilation->id_visitor)->first();
-        return view('laserepilation.show', compact('visitor', 'laserEpilation'));
+        $visitor = Visitor::where('id', $laserepilation->id_visitor)->first();
+        return view('laserepilation.show', compact('visitor', 'laserepilation'));
     }
 
 
-    public function destroy(LaserEpilation $laserEpilation)
+    public function destroy(LaserEpilation $laserepilation)
     {   
-        $id = $laserEpilation->id_visitor;
+        $id = $laserepilation->id_visitor;
         if(Auth::user()->isAdmin()) {
-            $laserEpilation->delete();
+            $laserepilation->delete();
         }
         return redirect()->route('visitors.show', $id);
     }

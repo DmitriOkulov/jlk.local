@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Добавить Лазерную эпиляцию</h1>
-    <form method="POST" action="{{ route('laserepilation.store') }}">
+<h1>Добавить Миостимуляцию</h1>
+    <form method="POST" action="{{ route('miostimulation.store') }}">
         @csrf
         <div class="form-group">
             <label for="date" class="col-form-label">Дата</label>
@@ -13,10 +13,10 @@
         </div>
 
         <div class="form-group">
-            <label for="percent" class="col-form-label">Процент</label>
-            <input id="percent" class="form-control{{ $errors->has('percent') ? ' is-invalid' : '' }}" name="percent" type="text" value="{{ old('percent') }}" required>
-            @if ($errors->has('percent'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('percent') }}</strong></span>
+            <label for="power" class="col-form-label">Мощность</label>
+            <input id="power" class="form-control{{ $errors->has('power') ? ' is-invalid' : '' }}" name="power" type="text" value="{{ old('power') }}" required>
+            @if ($errors->has('power'))
+                <span class="invalid-feedback"><strong>{{ $errors->first('power') }}</strong></span>
             @endif
         </div>
 
@@ -29,18 +29,10 @@
         </div>
 
         <div class="form-group">
-            <label for="ms" class="col-form-label">мс</label>
-            <input id="ms" class="form-control{{ $errors->has('ms') ? ' is-invalid' : '' }}" type="text" name="ms" value="{{ old('ms') }}">
-            @if ($errors->has('ms'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('ms') }}</strong></span>
-            @endif
-        </div>
-
-        <div class="form-group">
-            <label for="gc" class="col-form-label">Гц</label>
-            <input id="gc" class="form-control{{ $errors->has('gc') ? ' is-invalid' : '' }}" type="text" name="gc" value="{{ old('gc') }}">
-            @if ($errors->has('gc'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('gc') }}</strong></span>
+            <label for="program" class="col-form-label">Программа</label>
+            <input id="program" class="form-control{{ $errors->has('program') ? ' is-invalid' : '' }}" type="text" name="program" value="{{ old('program') }}">
+            @if ($errors->has('program'))
+                <span class="invalid-feedback"><strong>{{ $errors->first('program') }}</strong></span>
             @endif
         </div>
 

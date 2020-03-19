@@ -24,10 +24,9 @@ class CreateLaserEpilationsTable extends Migration
             $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();
-            $table->foreign('id_visitor')->references('id')->on('visitors');
 
             $table->bigInteger('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users');
+
         });
     }
 
