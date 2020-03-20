@@ -16,7 +16,7 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($laserEpilations as $visitor)
+        @foreach ($laserepilations as $visitor)
             <tr>
                 <td><a href="{{ route('laserepilation.show', $visitor) }}">
                     @if ($visitor->date)

@@ -31,6 +31,7 @@ Route::resource('visitors', 'Visitors\VisitorsController');
 
 Route::resource('laserepilation', 'Procedures\LaserEpilationController');
 Route::resource('miostimulation', 'Procedures\MiostimulationController');
+Route::resource('massage', 'Procedures\MassageController');
 
 Route::resource('weights', 'Visitors\WeightsController')->only([ 'store', 'destroy', 'create']);
 

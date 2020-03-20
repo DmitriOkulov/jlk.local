@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Visitors;
 
 use App\Models\User;
 use App\Models\Visitor;
+use App\Models\LaserEpilation;
+use App\Models\Miostimulation;
+use App\Models\Massage;
 use App\Models\Weight;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -55,7 +58,10 @@ class VisitorsController extends Controller
     public function show(Visitor $visitor)
     {
         $weights = Weight::where('id_visitor', $visitor->id)->get();
-        return view('visitors.show', compact('visitor', 'weights'));
+        $massage = Massage::where('id_visitor', $visitor->id)->get();
+        $miostimulation = Miostimulation::where('id_visitor', $visitor->id)->get();
+        $laserepilation = LaserEpilation::where('id_visitor', $visitor->id)->get();
+        return view('visitors.show', compact('visitor', 'weights', 'massage', 'miostimulation', 'laserepilation'));
 
     }
 

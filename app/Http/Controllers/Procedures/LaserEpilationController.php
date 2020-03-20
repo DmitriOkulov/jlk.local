@@ -19,8 +19,8 @@ class LaserEpilationController extends Controller
 
     public function index()
     {
-        $laserEpilations = LaserEpilation::all();
-        return view('laserepilation.index', compact('laserEpilations'));
+        $laserepilations = LaserEpilation::all();
+        return view('laserepilation.index', compact('laserepilations'));
     }
 
     public function create()

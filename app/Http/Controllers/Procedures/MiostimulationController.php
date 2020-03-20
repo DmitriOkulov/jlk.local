@@ -46,7 +46,7 @@ class MiostimulationController extends Controller
     public function update(Request $request, Miostimulation $miostimulation)
     {
         if(Auth::user()->isAdmin()) {
-            $miostimulation->update($request->only(['date', 'power', 'comment', 'id_user', 'id_visitor', 'zone', 'program']));
+            $miostimulation->update($request->only(['date', 'power', 'comment', 'id_visitor', 'zone', 'program']));
         }
         return redirect()->route('miostimulation.show', $miostimulation)->with('status', 'Информация изменена');
     }
@@ -58,11 +58,11 @@ class MiostimulationController extends Controller
     }
 
 
-    public function destroy(LaserEpilation $laserepilation)
+    public function destroy(Miostimulation $miostimulation)
     {   
-        $id = $laserepilation->id_visitor;
+        $id = $miostimulation->id_visitor;
         if(Auth::user()->isAdmin()) {
-            $laserepilation->delete();
+            $miostimulation->delete();
         }
         return redirect()->route('visitors.show', $id);
     }

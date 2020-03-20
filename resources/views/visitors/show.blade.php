@@ -85,4 +85,92 @@
     </table>
     <p><a href="{{ route('weights.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить измерение</a></p>
 
+    <h2>Массаж</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Мощность</th>
+            <th>Продолжительность</th>
+            <th>Программа</th>
+            <th>Комментарии</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($massage as $visitor)
+            <tr>
+                <td><a href="{{ route('massage.show', $visitor) }}">
+                    @if ($visitor->date)
+                        {{ date('d.m.Y', strtotime($visitor->date)) }}
+                    @endif
+                </a></td>
+                <td><a href="{{ route('massage.show', $visitor) }}">{{ $visitor->power }}</a></td>
+                <td><a href="{{ route('massage.show', $visitor) }}">{{ $visitor->length }}</a></td>
+                <td><a href="{{ route('massage.show', $visitor) }}">{{ $visitor->comment }}</a></td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <p><a href="{{ route('massage.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить Массаж</a></p>
+
+    <h2>Лазерные эпиляции</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Процент</th>
+            <th>Зона</th>
+            <th>Гц</th>
+            <th>мс</th>
+            <th>Комментарии</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($laserepilation as $visitor)
+            <tr>
+                <td><a href="{{ route('laserepilation.show', $visitor) }}">
+                    @if ($visitor->date)
+                        {{ date('d.m.Y', strtotime($visitor->date)) }}
+                    @endif
+                </a></td>
+                <td><a href="{{ route('laserepilation.show', $visitor) }}">{{ $visitor->percent }}</a></td>
+                <td><a href="{{ route('laserepilation.show', $visitor) }}">{{ $visitor->zone }}</a></td>
+                <td><a href="{{ route('laserepilation.show', $visitor) }}">{{ $visitor->gc }}</a></td>
+                <td><a href="{{ route('laserepilation.show', $visitor) }}">{{ $visitor->ms }}</a></td>
+                <td><a href="{{ route('laserepilation.show', $visitor) }}">{{ $visitor->comment }}</a></td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <p><a href="{{ route('laserepilation.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить Лазерную эпиляцию</a></p>
+
+    <h2>Миостимуляции</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Мощность</th>
+            <th>Зона</th>
+            <th>Программа</th>
+            <th>Комментарии</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($miostimulation as $visitor)
+            <tr>
+                <td><a href="{{ route('miostimulation.show', $visitor) }}">
+                    @if ($visitor->date)
+                        {{ date('d.m.Y', strtotime($visitor->date)) }}
+                    @endif
+                </a></td>
+                <td><a href="{{ route('miostimulation.show', $visitor) }}">{{ $visitor->power }}</a></td>
+                <td><a href="{{ route('miostimulation.show', $visitor) }}">{{ $visitor->zone }}</a></td>
+                <td><a href="{{ route('miostimulation.show', $visitor) }}">{{ $visitor->program }}</a></td>
+                <td><a href="{{ route('miostimulation.show', $visitor) }}">{{ $visitor->comment }}</a></td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <p><a href="{{ route('miostimulation.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить Миостимуляцию</a></p>
+
 @endsection
