@@ -20,10 +20,14 @@ class VisitorsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $query = Visitor::orderBy('id', 'asc');
-        $visitors = $query->get();
+        if (isset($request->search)) {
+            $visitors = Visitor::where('surname', 'LIKE', '%' . $request->search . '%')->orWhere('name', 'LIKE', '%' . $request->search . '%')->orWhere('patronymic', 'LIKE', '%' . $request->search . '%')->orWhere('phone', 'LIKE', '%' . $request->search . '%')->paginate(30);
+        } else {
+            $visitors = Visitor::orderBy('id', 'asc')->paginate(30);
+        }
+        
 
         return view('visitors.index', compact('visitors'));
     }

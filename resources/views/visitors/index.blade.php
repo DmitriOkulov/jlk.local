@@ -28,6 +28,7 @@
         @endforeach
         </tbody>
     </table>
+    {{ $visitors->links() }}
     <p><a href="{{ route('visitors.create') }}" class="btn btn-success">Добавить посетителя</a></p>
     
 
