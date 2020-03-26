@@ -54,7 +54,15 @@
             <tr>
                 <th>Дата измерения</th>
                 <th>Вес</th>
-                <th>Замеры</th>
+                <th>Левый трицепс</th>
+                <th>Правый трицепс</th>
+                <th>Талия</th>
+                <th>Бока</th>
+                <th>Ягодицы</th>
+                <th>Левое бедро</th>
+                <th>Правое бедро</th>
+                <th>Левая икра</th>
+                <th>Правая икра</th>
                 <th>Сотрудник</th>
                 <th></th>
             </tr>
@@ -67,8 +75,16 @@
                         {{ date('d.m.Y', strtotime($weight->date)) }}
                     @endif
                 </td>
-                <td>{{ $weight->value }}</td>
-                <td>{{ $weight->measure }}</td>
+                <td>{{ $weight->weight }}</td>
+                <td>{{ $weight->left_triceps }}</td>
+                <td>{{ $weight->right_triceps }}</td>
+                <td>{{ $weight->waist }}</td>
+                <td>{{ $weight->sides }}</td>
+                <td>{{ $weight->ass }}</td>
+                <td>{{ $weight->left_hip }}</td>
+                <td>{{ $weight->right_hip }}</td>
+                <td>{{ $weight->left_calf }}</td>
+                <td>{{ $weight->right_calf }}</td>
                 <td><a href="{{ route('admin.users.show', $weight->id_user) }}" target="_blank">{{ Auth::user($weight->id_user)->name }}</a></td>
                 <td>
                     @if (Auth::user()->isAdmin())

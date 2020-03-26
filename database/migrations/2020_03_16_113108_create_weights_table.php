@@ -16,8 +16,16 @@ class CreateWeightsTable extends Migration
         Schema::create('weights', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
-            $table->string('value')->nullable();
-            $table->text('measure')->nullable();
+            $table->string('weight')->nullable();
+            $table->string('left_triceps')->nullable();
+            $table->string('right_triceps')->nullable();
+            $table->string('waist')->nullable();
+            $table->string('sides')->nullable();
+            $table->string('ass')->nullable();
+            $table->string('left_hip')->nullable();
+            $table->string('right_hip')->nullable();
+            $table->string('left_calf')->nullable();
+            $table->string('right_calf')->nullable();
             $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();
