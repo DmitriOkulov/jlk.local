@@ -40,12 +40,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('visitors.index') }}">Посетители</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('laserepilation.index') }}">Лазерные эпиляции</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('miostimulation.index') }}">Миостимуляции</a>
-                            </li>
                             @if(Auth::user()->isAdmin())
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.users.index') }}">Пользователи</a>

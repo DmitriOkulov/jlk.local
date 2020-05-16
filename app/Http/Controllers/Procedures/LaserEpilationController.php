@@ -19,7 +19,7 @@ class LaserEpilationController extends Controller
 
     public function index()
     {
-        $laserepilations = LaserEpilation::all();
+        $laserepilations = LaserEpilation::paginate('30');
         return view('laserepilation.index', compact('laserepilations'));
     }
 

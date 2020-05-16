@@ -32,6 +32,8 @@ class WeightsController extends Controller
     {
         $weight = new Weight($request->toArray());
 
+        
+
         $weight->save();
 
         return redirect()->route('visitors.show', $weight->id_visitor);

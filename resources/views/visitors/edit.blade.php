@@ -70,7 +70,7 @@
 
         <div class="form-group">
             <label for="contraindication" class="col-form-label">Противопоказания</label>
-            <input id="contraindication" class="form-control{{ $errors->has('contraindication') ? ' is-invalid' : '' }}" name="contraindication" type="text" value="{{ old('contraindication', $visitor->contraindication) }}">
+            <textarea id="contraindication" name="contraindication">{{ old('contraindication') }}</textarea>
             @if ($errors->has('contraindication'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('contraindication') }}</strong></span>
             @endif
