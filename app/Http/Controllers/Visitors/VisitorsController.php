@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Visitors;
 
 use App\Models\User;
 use App\Models\Visitor;
+use App\Models\Contraindication;
 use App\Models\LaserEpilation;
 use App\Models\Miostimulation;
 use App\Models\Massage;
 use App\Models\Weight;
 use App\Http\Controllers\Controller;
+use App\Models\Cryolipoliz;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Cavitation;
+use App\Models\RF;
 
 class VisitorsController extends Controller
 {
@@ -23,9 +27,9 @@ class VisitorsController extends Controller
     public function index(Request $request)
     {
         if (isset($request->search)) {
-            $visitors = Visitor::where('surname', 'LIKE', '%' . $request->search . '%')->orWhere('name', 'LIKE', '%' . $request->search . '%')->orWhere('patronymic', 'LIKE', '%' . $request->search . '%')->orWhere('phone', 'LIKE', '%' . $request->search . '%')->paginate(30);
+            $visitors = Visitor::where('surname', 'LIKE', '%' . $request->search . '%')->orWhere('name', 'LIKE', '%' . $request->search . '%')->orWhere('patronymic', 'LIKE', '%' . $request->search . '%')->orWhere('phone', 'LIKE', '%' . $request->search . '%')->paginate(50);
         } else {
-            $visitors = Visitor::orderBy('id', 'asc')->paginate(30);
+            $visitors = Visitor::orderBy('id', 'asc')->paginate(50);
         }
         
 
@@ -65,7 +69,11 @@ class VisitorsController extends Controller
         $massage = Massage::where('id_visitor', $visitor->id)->get();
         $miostimulation = Miostimulation::where('id_visitor', $visitor->id)->get();
         $laserepilation = LaserEpilation::where('id_visitor', $visitor->id)->get();
-        return view('visitors.show', compact('visitor', 'weights', 'massage', 'miostimulation', 'laserepilation'));
+        $contraindication = Contraindication::where('id_visitor', $visitor->id)->get();
+        $cryolipoliz = Cryolipoliz::where('id_visitor', $visitor->id)->get();
+        $cavitation = Cavitation::where('id_visitor', $visitor->id)->get();
+        $rf = RF::where('id_visitor', $visitor->id)->get();
+        return view('visitors.show', compact('visitor', 'weights', 'massage', 'miostimulation', 'laserepilation', 'contraindication', 'cryolipoliz', 'cavitation', 'rf'));
 
     }
 

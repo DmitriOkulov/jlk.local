@@ -69,14 +69,6 @@
         </div>
 
         <div class="form-group">
-            <label for="contraindication" class="col-form-label">Противопоказания</label>
-            <textarea id="contraindication" name="contraindication">{{ old('contraindication') }}</textarea>
-            @if ($errors->has('contraindication'))
-                <span class="invalid-feedback"><strong>{{ $errors->first('contraindication') }}</strong></span>
-            @endif
-        </div>
-
-        <div class="form-group">
             <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>
     </form>

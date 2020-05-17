@@ -32,9 +32,12 @@ Route::resource('visitors', 'Visitors\VisitorsController');
 Route::resource('laserepilation', 'Procedures\LaserEpilationController');
 Route::resource('miostimulation', 'Procedures\MiostimulationController');
 Route::resource('massage', 'Procedures\MassageController');
+Route::resource('cryolipoliz', 'Procedures\CryolipolizController');
+Route::resource('rf', 'Procedures\RFController');
+Route::resource('cavitation', 'Procedures\CavitationController');
 
-Route::resource('weights', 'Visitors\WeightsController')->only([ 'store', 'destroy', 'create']);
-
+Route::resource('weights', 'Visitors\WeightsController')->only(['store', 'destroy', 'create']);
+Route::resource('contraindication', 'Visitors\ContraindicationController')->only(['store', 'destroy', 'create']);
 
 Route::group(
     [

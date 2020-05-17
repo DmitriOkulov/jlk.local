@@ -41,9 +41,6 @@
         <tr>
             <th>Употребляет ли гормоны/антибиотики?</th><td>{{ $visitor->gormons }}</td>
         </tr>
-        <tr>
-            <th>Противопоказания</th><td>{{ $visitor->contraindication }}</td>
-        </tr>
         <tbody>
         </tbody>
     </table>
@@ -100,6 +97,41 @@
         </tbody>
     </table>
     <p><a href="{{ route('weights.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить измерение</a></p>
+
+    <h2>Противопоказания</h2>  
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Дата</th>
+                <th>Противопоказания</th>
+                <th>Сотрудник</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach ($contraindication as $contrain)
+            <tr>
+                <td>
+                    @if ($contrain->date)
+                        {{ date('d.m.Y', strtotime($contrain->date)) }}
+                    @endif
+                </td>
+                <td>{{ $contrain->value }}</td>
+                <td><a href="{{ route('admin.users.show', $contrain->id_user) }}" target="_blank">{{ Auth::user($contrain->id_user)->name }}</a></td>
+                <td>
+                    @if (Auth::user()->isAdmin())
+                        <form method="POST" action="{{ route('contraindication.destroy', $contrain) }}" class="mr-1">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">Удалить</button>
+                        </form>
+                    @endif
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <p><a href="{{ route('contraindication.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить противопоказание</a></p>
 
     <h2>Массаж</h2>
     <table class="table table-bordered table-striped">
@@ -159,6 +191,83 @@
         </tbody>
     </table>
     <p><a href="{{ route('laserepilation.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить Лазерную эпиляцию</a></p>
+
+    <h2>Криолиполиз</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Зона</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($cryolipoliz as $visitor)
+            <tr>
+                <td><a href="{{ route('cryolipoliz.show', $visitor) }}">
+                    @if ($visitor->date)
+                        {{ date('d.m.Y', strtotime($visitor->date)) }}
+                    @endif
+                </a></td>
+                <td><a href="{{ route('cryolipoliz.show', $visitor) }}">{{ $visitor->zone }}</a></td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <p><a href="{{ route('cryolipoliz.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить Криолиполиз</a></p>
+
+    <h2>RF лифтинг</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Живот</th>
+            <th>Ягодицы</th>
+            <th>Бедра</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($rf as $visitor)
+            <tr>
+                <td><a href="{{ route('rf.show', $visitor) }}">
+                    @if ($visitor->date)
+                        {{ date('d.m.Y', strtotime($visitor->date)) }}
+                    @endif
+                </a></td>
+                <td><a href="{{ route('rf.show', $visitor) }}">{{ $visitor->stomach }}</a></td>
+                <td><a href="{{ route('rf.show', $visitor) }}">{{ $visitor->ass }}</a></td>
+                <td><a href="{{ route('rf.show', $visitor) }}">{{ $visitor->hips }}</a></td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <p><a href="{{ route('rf.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить RF лифтинг</a></p>
+
+    <h2>RF лифтинг</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Дата</th>
+            <th>Живот</th>
+            <th>Ягодицы</th>
+            <th>Бедра</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($cavitation as $visitor)
+            <tr>
+                <td><a href="{{ route('cavitation.show', $visitor) }}">
+                    @if ($visitor->date)
+                        {{ date('d.m.Y', strtotime($visitor->date)) }}
+                    @endif
+                </a></td>
+                <td><a href="{{ route('cavitation.show', $visitor) }}">{{ $visitor->stomach }}</a></td>
+                <td><a href="{{ route('cavitation.show', $visitor) }}">{{ $visitor->ass }}</a></td>
+                <td><a href="{{ route('cavitation.show', $visitor) }}">{{ $visitor->hips }}</a></td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <p><a href="{{ route('cavitation.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить Ультразвуковая кавитация</a></p>
 
     <h2>Миостимуляции</h2>
     <table class="table table-bordered table-striped">

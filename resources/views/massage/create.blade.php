@@ -6,7 +6,7 @@
         @csrf
         <div class="form-group">
             <label for="date" class="col-form-label">Дата</label>
-            <input id="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" type="date" value="{{ old('date') }}">
+            <input id="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" type="date" value="{{ date('Y-m-d') }}">
             @if ($errors->has('date'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('date') }}</strong></span>
             @endif
@@ -33,19 +33,7 @@
             <textarea name="comment">{{ old('comment') }}</textarea>
         </div>
 
-        <div class="form-group">
-            <label for="id_visitor" class="col-form-label">Посетитель</label>
-            <select name="id_visitor" size="10">
-                @foreach($visitors as $visitor)
-                    <option value="{{ $visitor->id }}" 
-                    @if(isset($_GET['visitor']) and $_GET['visitor']==$visitor->id) 
-                        selected
-                    @endif
-                    >{{ $visitor->surname }} {{ $visitor->name }} {{ $visitor->patronymic }}</option>
-                @endforeach
-            </select>
-        </div>
-
+        <input type="hidden" name="id_visitor" value="{{ $_GET['visitor'] }}">
         <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
 
         <div class="form-group">

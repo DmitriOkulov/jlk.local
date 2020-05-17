@@ -25,8 +25,7 @@ class MassageController extends Controller
 
     public function create()
     {
-        $visitors = Visitor::all();
-        return view('massage.create', compact('visitors'));
+        return view('massage.create');
     }
 
     public function store(Request $request)

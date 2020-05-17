@@ -25,8 +25,7 @@ class MiostimulationController extends Controller
 
     public function create()
     {
-        $visitors = Visitor::all();
-        return view('miostimulation.create', compact('visitors'));
+        return view('miostimulation.create');
     }
 
     public function store(Request $request)

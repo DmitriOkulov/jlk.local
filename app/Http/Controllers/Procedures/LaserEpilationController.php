@@ -25,8 +25,7 @@ class LaserEpilationController extends Controller
 
     public function create()
     {
-        $visitors = Visitor::all();
-        return view('laserepilation.create', compact('visitors'));
+        return view('laserepilation.create');
     }
 
     public function store(Request $request)

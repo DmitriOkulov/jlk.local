@@ -7,7 +7,7 @@
 
         <div class="form-group">
             <label for="date" class="col-form-label">Дата измерения</label>
-            <input id="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" type="date" value="{{ old('date') }}" required>
+            <input id="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" name="date" type="date" value="{{ date('Y-m-d') }}" required>
             @if ($errors->has('date'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('date') }}</strong></span>
             @endif
