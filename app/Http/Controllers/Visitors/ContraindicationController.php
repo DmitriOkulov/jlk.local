@@ -36,7 +36,7 @@ class ContraindicationController extends Controller
 
         $contraindication->save();
 
-        return redirect()->route('visitor.show', $contraindication->id_visitor);
+        return redirect()->route('visitors.show', $contraindication->id_visitor);
     }
 
     public function edit(Visitor $visitor)

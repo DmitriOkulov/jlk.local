@@ -19,6 +19,7 @@ class CreateCavitationsTable extends Migration
             $table->string('stomach');
             $table->string('ass');
             $table->string('hips');
+            $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();
 

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cryolipoliz;
 
-class LaserEpilationController extends Controller
+class CryolipolizController extends Controller
 {
 
     public function __construct()

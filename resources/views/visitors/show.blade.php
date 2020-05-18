@@ -242,7 +242,7 @@
     </table>
     <p><a href="{{ route('rf.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить RF лифтинг</a></p>
 
-    <h2>RF лифтинг</h2>
+    <h2>Ультразвуковая кавитация</h2>
     <table class="table table-bordered table-striped">
         <thead>
         <tr>

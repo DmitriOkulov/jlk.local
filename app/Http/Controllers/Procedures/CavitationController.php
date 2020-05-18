@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\RF;
 use App\Models\Cavitation;
 
-class LaserEpilationController extends Controller
+class CavitationController extends Controller
 {
 
     public function __construct()
@@ -26,7 +26,7 @@ class LaserEpilationController extends Controller
 
     public function create()
     {
-        return view('cavitation.create', compact('visitors'));
+        return view('cavitation.create');
     }
 
     public function store(Request $request)

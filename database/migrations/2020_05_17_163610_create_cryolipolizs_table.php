@@ -17,6 +17,7 @@ class CreateCryolipolizsTable extends Migration
             $table->bigIncrements('id');
             $table->date('date');
             $table->string('zone');
+            $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();
 
