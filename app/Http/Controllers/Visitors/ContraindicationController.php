@@ -55,11 +55,11 @@ class ContraindicationController extends Controller
     }
 
 
-    public function destroy(Contraindication $weight)
+    public function destroy(Contraindication $contraindication)
     {   
-        $id = $weight->id_visitor;
+        $id = $contraindication->id_visitor;
         if(Auth::user()->isAdmin()) {
-            $weight->delete();
+            $contraindication->delete();
         }
         
         return redirect()->route('visitors.show', $id);
