@@ -24,6 +24,8 @@ class CreateVisitorsTable extends Migration
             $table->string('hair_color')->nullable();
             $table->string('gormons')->nullable();
             $table->string('contraindication')->nullable();
+
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

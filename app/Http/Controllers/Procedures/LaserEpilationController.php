@@ -38,8 +38,7 @@ class LaserEpilationController extends Controller
 
     public function edit(LaserEpilation $laserepilation)
     {
-        $visitors = Visitor::all();
-        return view('laserepilation.edit', $laserepilation, compact('laserepilation', 'visitors'));
+        return view('laserepilation.edit', $laserepilation, compact('laserepilation'));
     }
 
     public function update(Request $request, LaserEpilation $laserepilation)
@@ -53,7 +52,8 @@ class LaserEpilationController extends Controller
     public function show(LaserEpilation $laserepilation)
     {
         $visitor = Visitor::where('id', $laserepilation->id_visitor)->first();
-        return view('laserepilation.show', compact('visitor', 'laserepilation'));
+        $user = User::where('id', $laserepilation->id_user)->first();
+        return view('laserepilation.show', compact('visitor', 'laserepilation', 'user'));
     }
 
 

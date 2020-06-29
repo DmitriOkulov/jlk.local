@@ -19,11 +19,12 @@ class CreateMiostimulationsTable extends Migration
             $table->text('zone');
             $table->text('program');
             $table->string('power')->nullable();
+
+
             $table->text('comment')->nullable();
             $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();
-
             $table->bigInteger('id_user')->unsigned();
 
         });

@@ -20,11 +20,12 @@ class CreateLaserEpilationsTable extends Migration
             $table->string('percent');
             $table->string('ms')->nullable();
             $table->string('gc')->nullable();
+
+
             $table->text('comment')->nullable();
             $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();
-
             $table->bigInteger('id_user')->unsigned();
 
         });

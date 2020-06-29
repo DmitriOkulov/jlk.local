@@ -20,6 +20,11 @@
             @endif
         </div>
 
+        <div class="form-group">
+            <label for="comment" class="col-form-label">Комментарий</label>
+            <textarea name="comment">{{ old('comment') }}</textarea>
+        </div>
+
         <input type="hidden" name="id_visitor" value="{{ $_GET['visitor'] }}">
         <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">
 

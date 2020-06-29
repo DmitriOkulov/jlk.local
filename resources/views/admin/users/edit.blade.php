@@ -30,6 +30,24 @@
             @endif
         </div>
 
+        <div class="form-group">
+            <label for="role" class="col-form-label">Роль</label>
+            <select name="role">
+                
+                @if(old('email', $user->role)=="user")
+                    <option value="user" selected>Пользователь</option>
+                @else
+                    <option value="user">Пользователь</option>
+                @endif
+
+                @if(old('email', $user->role)=="admin")
+                    <option value="admin" selected>Администратор</option>
+                @else
+                    <option value="admin">Администратор</option>
+                @endif
+
+            </select>
+        </div>
 
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Сохранить</button>

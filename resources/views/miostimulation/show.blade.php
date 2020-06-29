@@ -38,7 +38,7 @@
             <th>Посетитель</th><td><a href="{{ route('visitors.show', $visitor->id) }}">{{ $visitor->surname }} {{ $visitor->name }} {{ $visitor->patronymic }}</a></td>
         </tr>
         <tr>
-            <th>Пользователь</th><td>{{ Auth::user($miostimulation->id_user)->name }}</td>
+            <th>Пользователь</th><td>{{ $user->name }}</td>
         </tr>
         <tbody>
         </tbody>

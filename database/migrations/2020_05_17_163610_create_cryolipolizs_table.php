@@ -17,10 +17,11 @@ class CreateCryolipolizsTable extends Migration
             $table->bigIncrements('id');
             $table->date('date');
             $table->string('zone');
+            
+            $table->text('comment')->nullable();
             $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();
-
             $table->bigInteger('id_user')->unsigned();
         });
     }

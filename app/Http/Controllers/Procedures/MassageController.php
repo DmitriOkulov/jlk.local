@@ -38,14 +38,13 @@ class MassageController extends Controller
 
     public function edit(Massage $massage)
     {
-        $visitors = Visitor::all();
-        return view('massage.edit', compact('massage', 'visitors'));
+        return view('massage.edit', compact('massage'));
     }
 
     public function update(Request $request, Massage $massage)
     {
         if(Auth::user()->isAdmin()) {
-            $massage->update($request->only(['date', 'power', 'length', 'comment', 'id_visitor']));
+            $massage->update($request->only(['date', 'power', 'length', 'comment', 'id_visitor', 'comment']));
         }
         return redirect()->route('massage.show', $massage)->with('status', 'Информация изменена');
     }
@@ -53,7 +52,8 @@ class MassageController extends Controller
     public function show(Massage $massage)
     {
         $visitor = Visitor::where('id', $massage->id_visitor)->first();
-        return view('massage.show', compact('visitor', 'massage'));
+        $user = User::where('id', $massage->id_user)->first();
+        return view('massage.show', compact('visitor', 'massage', 'user'));
     }
 
 

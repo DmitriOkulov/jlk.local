@@ -17,6 +17,8 @@ class CreateContraindicationsTable extends Migration
             $table->bigIncrements('id');
             $table->date('date');
             $table->text('value');
+
+            $table->text('comment')->nullable();
             $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();

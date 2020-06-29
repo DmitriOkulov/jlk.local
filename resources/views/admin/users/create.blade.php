@@ -26,6 +26,14 @@
         </div>
 
         <div class="form-group">
+            <label for="role" class="col-form-label">Роль</label>
+            <select name="role">
+                <option value="user" selected>Пользователь</option>
+                <option value="admin">Администратор</option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <button type="submit" class="btn btn-primary">Добавить</button>
         </div>
     </form>

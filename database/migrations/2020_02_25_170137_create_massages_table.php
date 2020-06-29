@@ -18,11 +18,11 @@ class CreateMassagesTable extends Migration
             $table->date('date');
             $table->string('power');
             $table->string('length')->nullable();
+            
             $table->text('comment')->nullable();
             $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();
-
             $table->bigInteger('id_user')->unsigned();
 
         });

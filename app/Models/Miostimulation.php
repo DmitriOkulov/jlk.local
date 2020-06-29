@@ -25,6 +25,5 @@ class Miostimulation extends Model
         'jivot' => 'Живот',
         'ass' => 'Ягодицы',
         'arms' => 'Руки',
-
     ];
 }

@@ -16,13 +16,14 @@ class CreateRFSTable extends Migration
         Schema::create('r_f_s', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
-            $table->string('stomach');
-            $table->string('ass');
-            $table->string('hips');
+            $table->string('stomach')->nullable();
+            $table->string('ass')->nullable();
+            $table->string('hips')->nullable();
+
+            $table->text('comment')->nullable();
             $table->timestamps();
 
             $table->bigInteger('id_visitor')->unsigned();
-
             $table->bigInteger('id_user')->unsigned();
         });
     }

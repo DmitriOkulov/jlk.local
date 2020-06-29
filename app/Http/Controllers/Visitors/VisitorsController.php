@@ -58,7 +58,7 @@ class VisitorsController extends Controller
     public function update(Request $request, Visitor $visitor)
     {
         if(Auth::user()->isAdmin()) {
-            $visitor->update($request->only(['surname', 'name', 'patronymic', 'birthday', 'skin_color', 'hair_color', 'gormons', 'contraindication', 'phone']));
+            $visitor->update($request->only(['surname', 'name', 'patronymic', 'birthday', 'skin_color', 'hair_color', 'gormons', 'contraindication', 'phone', 'comment']));
         }
         return redirect()->route('visitors.show', $visitor)->with('status', 'Информация изменена');
     }
@@ -73,6 +73,7 @@ class VisitorsController extends Controller
         $cryolipoliz = Cryolipoliz::where('id_visitor', $visitor->id)->get();
         $cavitation = Cavitation::where('id_visitor', $visitor->id)->get();
         $rf = RF::where('id_visitor', $visitor->id)->get();
+        //сюда бы ещё юзера добавить
         return view('visitors.show', compact('visitor', 'weights', 'massage', 'miostimulation', 'laserepilation', 'contraindication', 'cryolipoliz', 'cavitation', 'rf'));
 
     }

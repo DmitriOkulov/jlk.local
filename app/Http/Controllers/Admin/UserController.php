@@ -36,7 +36,7 @@ class UserController extends Controller
             $request['name'],
             $request['email'],
             $request['password'],
-            'user'
+            $request['role']
         );
 
         $user->save();
@@ -54,7 +54,12 @@ class UserController extends Controller
         if ($request->password == '') {
             $user->update($request->only(['name', 'email']));
         } else {
-            $user->update($request->only(['name', 'email', 'password']));
+            $user->update(
+                array_merge(
+                    $request->only(['name', 'email']), 
+                    ['password' => bcrypt($request->password),]
+                )
+            );
         }
         
 

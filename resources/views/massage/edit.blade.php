@@ -37,16 +37,8 @@
         </div>
 
         <div class="form-group">
-            <label for="id_visitor" class="col-form-label">Посетитель</label>
-            <select name="id_visitor" size="10">
-                @foreach($visitors as $visitor)
-                    <option value="{{ $visitor->id }}" 
-                    @if($miostimulation->id_visitor==$visitor->id) 
-                        selected
-                    @endif
-                    >{{ $visitor->surname }} {{ $visitor->name }} {{ $visitor->patronymic }}</option>
-                @endforeach
-            </select>
+            <label for="id_visitor" class="col-form-label">Посетитель (id)</label>
+            <input id="id_visitor" class="form-control{{ $errors->has('id_visitor') ? ' is-invalid' : '' }}" name="id_visitor" type="text" value="{{ old('id_visitor', $massage->id_visitor) }}">
         </div>
 
         <div class="form-group">

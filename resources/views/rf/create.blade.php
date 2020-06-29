@@ -14,7 +14,7 @@
 
         <div class="form-group">
             <label for="stomach" class="col-form-label">Живот</label>
-            <input id="stomach" class="form-control{{ $errors->has('stomach') ? ' is-invalid' : '' }}" name="stomach" type="text" value="{{ old('stomach') }}" required>
+            <input id="stomach" class="form-control{{ $errors->has('stomach') ? ' is-invalid' : '' }}" name="stomach" type="text" value="{{ old('stomach') }}">
             @if ($errors->has('stomach'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('stomach') }}</strong></span>
             @endif
@@ -22,7 +22,7 @@
 
         <div class="form-group">
             <label for="ass" class="col-form-label">Ягодицы</label>
-            <input id="ass" class="form-control{{ $errors->has('ass') ? ' is-invalid' : '' }}" name="ass" type="text" value="{{ old('ass') }}" required>
+            <input id="ass" class="form-control{{ $errors->has('ass') ? ' is-invalid' : '' }}" name="ass" type="text" value="{{ old('ass') }}">
             @if ($errors->has('ass'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('ass') }}</strong></span>
             @endif
@@ -30,10 +30,15 @@
 
         <div class="form-group">
             <label for="hips" class="col-form-label">Бедра</label>
-            <input id="hips" class="form-control{{ $errors->has('hips') ? ' is-invalid' : '' }}" name="hips" type="text" value="{{ old('hips') }}" required>
+            <input id="hips" class="form-control{{ $errors->has('hips') ? ' is-invalid' : '' }}" name="hips" type="text" value="{{ old('hips') }}">
             @if ($errors->has('hips'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('hips') }}</strong></span>
             @endif
+        </div>
+
+        <div class="form-group">
+            <label for="comment" class="col-form-label">Комментарий</label>
+            <textarea name="comment">{{ old('comment') }}</textarea>
         </div>
 
         <input type="hidden" name="id_user" value="{{ Auth::user()->id }}">

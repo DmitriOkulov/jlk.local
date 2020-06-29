@@ -21,6 +21,11 @@
             @endif
         </div>
 
+        <div class="form-group">
+            <label for="comment" class="col-form-label">Комментарий</label>
+            <textarea name="comment">{{ old('comment') }}</textarea>
+        </div>
+
 
         <div class="form-group">
             <label class="col-form-label">Посетитель: {{ $visitor->surname }} {{ $visitor->name }}</label>

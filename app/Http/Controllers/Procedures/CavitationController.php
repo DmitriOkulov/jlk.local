@@ -39,14 +39,13 @@ class CavitationController extends Controller
 
     public function edit(Cavitation $cavitation)
     {
-        $visitors = Visitor::all();
-        return view('cavitation.edit', $cavitation, compact('cavitation', 'visitors'));
+        return view('cavitation.edit', $cavitation, compact('cavitation'));
     }
 
     public function update(Request $request, Cavitation $cavitation)
     {
         if(Auth::user()->isAdmin()) {
-            $cavitation->update($request->only(['date', 'stomach', 'ass', 'hips', 'id_user', 'id_visitor']));
+            $cavitation->update($request->only(['date', 'stomach', 'ass', 'hips', 'id_user', 'id_visitor', 'comment']));
         }
         return redirect()->route('cavitation.show', $cavitation)->with('status', 'Информация изменена');
     }
@@ -54,7 +53,8 @@ class CavitationController extends Controller
     public function show(Cavitation $cavitation)
     {
         $visitor = Visitor::where('id', $cavitation->id_visitor)->first();
-        return view('cavitation.show', compact('visitor', 'cavitation'));
+        $user = User::where('id', $cavitation->id_user)->first();
+        return view('cavitation.show', compact('visitor', 'cavitation', 'user'));
     }
 
 

@@ -39,14 +39,13 @@ class RFController extends Controller
 
     public function edit(RF $rf)
     {
-        $visitors = Visitor::all();
-        return view('rf.edit', $rf, compact('rf', 'visitors'));
+        return view('rf.edit', $rf, compact('rf'));
     }
 
     public function update(Request $request, RF $rf)
     {
         if(Auth::user()->isAdmin()) {
-            $rf->update($request->only(['date', 'stomach', 'ass', 'hips', 'id_user', 'id_visitor']));
+            $rf->update($request->only(['date', 'stomach', 'ass', 'hips', 'id_user', 'id_visitor', 'comment']));
         }
         return redirect()->route('rf.show', $rf)->with('status', 'Информация изменена');
     }
@@ -54,7 +53,8 @@ class RFController extends Controller
     public function show(RF $rf)
     {
         $visitor = Visitor::where('id', $rf->id_visitor)->first();
-        return view('rf.show', compact('visitor', 'rf'));
+        $user = User::where('id', $rf->id_user)->first();
+        return view('rf.show', compact('visitor', 'rf', 'user'));
     }
 
 

@@ -41,10 +41,15 @@
         <tr>
             <th>Употребляет ли гормоны/антибиотики?</th><td>{{ $visitor->gormons }}</td>
         </tr>
+        <tr>
+            <th>Комментарий</th><td>{{ $visitor->comment }}</td>
+        </tr>
         <tbody>
         </tbody>
     </table>
-
+    @php
+        $vs = $visitor->id;
+    @endphp
     <h2>Параметры</h2>  
     <table class="table table-bordered table-striped">
         <thead>
@@ -60,7 +65,7 @@
                 <th>Правое бедро</th>
                 <th>Левая икра</th>
                 <th>Правая икра</th>
-                <th>Сотрудник</th>
+                <th>Комментарий</th>
                 <th></th>
             </tr>
         </thead>
@@ -82,7 +87,7 @@
                 <td>{{ $weight->right_hip }}</td>
                 <td>{{ $weight->left_calf }}</td>
                 <td>{{ $weight->right_calf }}</td>
-                <td><a href="{{ route('admin.users.show', $weight->id_user) }}" target="_blank">{{ Auth::user($weight->id_user)->name }}</a></td>
+                <td>{{ $weight->comment }}</td>
                 <td>
                     @if (Auth::user()->isAdmin())
                         <form method="POST" action="{{ route('weights.destroy', $weight) }}" class="mr-1">
@@ -96,7 +101,7 @@
         @endforeach
         </tbody>
     </table>
-    <p><a href="{{ route('weights.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить измерение</a></p>
+    <p><a href="{{ route('weights.create') }}?visitor={{ $vs }}" class="btn btn-success">Добавить измерение</a></p>
 
     <h2>Противопоказания</h2>  
     <table class="table table-bordered table-striped">
@@ -104,7 +109,7 @@
             <tr>
                 <th>Дата</th>
                 <th>Противопоказания</th>
-                <th>Сотрудник</th>
+                <th>Комментарий</th>
                 <th></th>
             </tr>
         </thead>
@@ -117,7 +122,7 @@
                     @endif
                 </td>
                 <td>{{ $contrain->value }}</td>
-                <td><a href="{{ route('admin.users.show', $contrain->id_user) }}" target="_blank">{{ Auth::user($contrain->id_user)->name }}</a></td>
+                <td>{{ $contrain->comment }}</td>
                 <td>
                     @if (Auth::user()->isAdmin())
                         <form method="POST" action="{{ route('contraindication.destroy', $contrain) }}" class="mr-1">
@@ -131,7 +136,7 @@
         @endforeach
         </tbody>
     </table>
-    <p><a href="{{ route('contraindication.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить противопоказание</a></p>
+    <p><a href="{{ route('contraindication.create') }}?visitor={{ $vs }}" class="btn btn-success">Добавить противопоказание</a></p>
 
     <h2>Массаж</h2>
     <table class="table table-bordered table-striped">
@@ -140,7 +145,6 @@
             <th>Дата</th>
             <th>Мощность</th>
             <th>Продолжительность</th>
-            <th>Программа</th>
             <th>Комментарии</th>
         </tr>
         </thead>
@@ -159,7 +163,7 @@
         @endforeach
         </tbody>
     </table>
-    <p><a href="{{ route('massage.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить Массаж</a></p>
+    <p><a href="{{ route('massage.create') }}?visitor={{ $vs }}" class="btn btn-success">Добавить Массаж</a></p>
 
     <h2>Лазерные эпиляции</h2>
     <table class="table table-bordered table-striped">
@@ -190,7 +194,7 @@
         @endforeach
         </tbody>
     </table>
-    <p><a href="{{ route('laserepilation.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить Лазерную эпиляцию</a></p>
+    <p><a href="{{ route('laserepilation.create') }}?visitor={{ $vs }}" class="btn btn-success">Добавить Лазерную эпиляцию</a></p>
 
     <h2>Криолиполиз</h2>
     <table class="table table-bordered table-striped">
@@ -198,6 +202,7 @@
         <tr>
             <th>Дата</th>
             <th>Зона</th>
+            <th>Комментарии</th>
         </tr>
         </thead>
         <tbody>
@@ -209,11 +214,12 @@
                     @endif
                 </a></td>
                 <td><a href="{{ route('cryolipoliz.show', $visitor) }}">{{ $visitor->zone }}</a></td>
+                <td><a href="{{ route('cryolipoliz.show', $visitor) }}">{{ $visitor->comment }}</a></td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    <p><a href="{{ route('cryolipoliz.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить Криолиполиз</a></p>
+    <p><a href="{{ route('cryolipoliz.create') }}?visitor={{ $vs }}" class="btn btn-success">Добавить Криолиполиз</a></p>
 
     <h2>RF лифтинг</h2>
     <table class="table table-bordered table-striped">
@@ -223,6 +229,7 @@
             <th>Живот</th>
             <th>Ягодицы</th>
             <th>Бедра</th>
+            <th>Комментарии</th>
         </tr>
         </thead>
         <tbody>
@@ -236,11 +243,12 @@
                 <td><a href="{{ route('rf.show', $visitor) }}">{{ $visitor->stomach }}</a></td>
                 <td><a href="{{ route('rf.show', $visitor) }}">{{ $visitor->ass }}</a></td>
                 <td><a href="{{ route('rf.show', $visitor) }}">{{ $visitor->hips }}</a></td>
+                <td><a href="{{ route('rf.show', $visitor) }}">{{ $visitor->comment }}</a></td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    <p><a href="{{ route('rf.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить RF лифтинг</a></p>
+    <p><a href="{{ route('rf.create') }}?visitor={{ $vs }}" class="btn btn-success">Добавить RF лифтинг</a></p>
 
     <h2>Ультразвуковая кавитация</h2>
     <table class="table table-bordered table-striped">
@@ -250,6 +258,7 @@
             <th>Живот</th>
             <th>Ягодицы</th>
             <th>Бедра</th>
+            <th>Комментарии</th>
         </tr>
         </thead>
         <tbody>
@@ -263,11 +272,12 @@
                 <td><a href="{{ route('cavitation.show', $visitor) }}">{{ $visitor->stomach }}</a></td>
                 <td><a href="{{ route('cavitation.show', $visitor) }}">{{ $visitor->ass }}</a></td>
                 <td><a href="{{ route('cavitation.show', $visitor) }}">{{ $visitor->hips }}</a></td>
+                <td><a href="{{ route('cavitation.show', $visitor) }}">{{ $visitor->comment }}</a></td>
             </tr>
         @endforeach
         </tbody>
     </table>
-    <p><a href="{{ route('cavitation.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить Ультразвуковая кавитация</a></p>
+    <p><a href="{{ route('cavitation.create') }}?visitor={{ $vs }}" class="btn btn-success">Добавить Ультразвуковая кавитация</a></p>
 
     <h2>Миостимуляции</h2>
     <table class="table table-bordered table-striped">
@@ -296,6 +306,6 @@
         @endforeach
         </tbody>
     </table>
-    <p><a href="{{ route('miostimulation.create') }}?visitor={{ $visitor->id }}" class="btn btn-success">Добавить Миостимуляцию</a></p>
+    <p><a href="{{ route('miostimulation.create') }}?visitor={{ $vs }}" class="btn btn-success">Добавить Миостимуляцию</a></p>
 
 @endsection

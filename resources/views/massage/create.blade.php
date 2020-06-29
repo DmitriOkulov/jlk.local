@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>Добавить Массаж</h1>
-    <form method="POST" action="{{ route('length.store') }}">
+    <form method="POST" action="{{ route('massage.store') }}">
         @csrf
         <div class="form-group">
             <label for="date" class="col-form-label">Дата</label>

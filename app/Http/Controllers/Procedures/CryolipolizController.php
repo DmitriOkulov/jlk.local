@@ -38,14 +38,13 @@ class CryolipolizController extends Controller
 
     public function edit(Cryolipoliz $cryolipoliz)
     {
-        $visitors = Visitor::all();
-        return view('cryolipoliz.edit', $cryolipoliz, compact('cryolipoliz', 'visitors'));
+        return view('cryolipoliz.edit', $cryolipoliz, compact('cryolipoliz'));
     }
 
     public function update(Request $request, Cryolipoliz $cryolipoliz)
     {
         if(Auth::user()->isAdmin()) {
-            $cryolipoliz->update($request->only(['date', 'zone', 'id_user', 'id_visitor']));
+            $cryolipoliz->update($request->only(['date', 'zone', 'id_user', 'id_visitor', 'comment']));
         }
         return redirect()->route('cryolipoliz.show', $cryolipoliz)->with('status', 'Информация изменена');
     }
@@ -53,7 +52,8 @@ class CryolipolizController extends Controller
     public function show(Cryolipoliz $cryolipoliz)
     {
         $visitor = Visitor::where('id', $cryolipoliz->id_visitor)->first();
-        return view('cryolipoliz.show', compact('visitor', 'cryolipoliz'));
+        $user = User::where('id', $cryolipoliz->id_user)->first();
+        return view('cryolipoliz.show', compact('visitor', 'cryolipoliz', 'user'));
     }
 
 

@@ -38,14 +38,13 @@ class MiostimulationController extends Controller
 
     public function edit(Miostimulation $miostimulation)
     {
-        $visitors = Visitor::all();
-        return view('miostimulation.edit', compact('miostimulation', 'visitors'));
+        return view('miostimulation.edit', compact('miostimulation'));
     }
 
     public function update(Request $request, Miostimulation $miostimulation)
     {
         if(Auth::user()->isAdmin()) {
-            $miostimulation->update($request->only(['date', 'power', 'comment', 'id_visitor', 'zone', 'program']));
+            $miostimulation->update($request->only(['date', 'power', 'comment', 'id_visitor', 'zone', 'program', 'comment']));
         }
         return redirect()->route('miostimulation.show', $miostimulation)->with('status', 'Информация изменена');
     }
@@ -53,7 +52,8 @@ class MiostimulationController extends Controller
     public function show(Miostimulation $miostimulation)
     {
         $visitor = Visitor::where('id', $miostimulation->id_visitor)->first();
-        return view('miostimulation.show', compact('visitor', 'miostimulation'));
+        $user = User::where('id', $miostimulation->id_user)->first();
+        return view('miostimulation.show', compact('visitor', 'miostimulation', 'user'));
     }
 
 

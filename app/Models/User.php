@@ -19,6 +19,11 @@ class User extends Authenticatable
         'email', 'password', 'role', 'name'
     ];
 
+    public static $roles = [
+        'user',
+        'admin'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -51,4 +56,6 @@ class User extends Authenticatable
     {
         return $this->role === 'admin';
     }
+
+    
 }
