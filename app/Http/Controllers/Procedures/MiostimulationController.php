@@ -43,8 +43,9 @@ class MiostimulationController extends Controller
 
     public function update(Request $request, Miostimulation $miostimulation)
     {
+        $miostimulation->update($request->only(['comment']));
         if(Auth::user()->isAdmin()) {
-            $miostimulation->update($request->only(['date', 'power', 'comment', 'id_visitor', 'zone', 'program', 'comment']));
+            $miostimulation->update($request->only(['date', 'power', 'id_visitor', 'zone', 'program']));
         }
         return redirect()->route('miostimulation.show', $miostimulation)->with('status', 'Информация изменена');
     }
@@ -52,13 +53,18 @@ class MiostimulationController extends Controller
     public function show(Miostimulation $miostimulation)
     {
         $visitor = Visitor::where('id', $miostimulation->id_visitor)->first();
-        $user = User::where('id', $miostimulation->id_user)->first();
-        return view('miostimulation.show', compact('visitor', 'miostimulation', 'user'));
+        $user = User::find($miostimulation->id_user);
+        if($user) {
+            $miostimulation->userName = $user->name;
+        } else {
+            $miostimulation->userName = 'Сотрудник удалён';
+        }
+        return view('miostimulation.show', compact('visitor', 'miostimulation'));
     }
 
 
     public function destroy(Miostimulation $miostimulation)
-    {   
+    {
         $id = $miostimulation->id_visitor;
         if(Auth::user()->isAdmin()) {
             $miostimulation->delete();

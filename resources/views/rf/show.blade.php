@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="d-flex flex-row mb-3">
+        <a href="{{ route('rf.edit', $rf) }}" class="btn btn-primary mr-1">Редактировать</a>
         @if(Auth::user()->isAdmin())
-            <a href="{{ route('rf.edit', $rf) }}" class="btn btn-primary mr-1">Редактировать</a>
             <form method="POST" action="{{ route('rf.destroy', $rf) }}" class="mr-1">
                 @csrf
                 @method('DELETE')
@@ -32,7 +32,7 @@
         <tr>
             <th>Бедра</th><td>{{ $rf->hips }}</td>
         </tr>
-        
+
         <tr>
             <th>Посетитель</th><td><a href="{{ route('visitors.show', $visitor->id) }}">{{ $visitor->surname }} {{ $visitor->name }} {{ $visitor->patronymic }}</a></td>
         </tr>
@@ -40,7 +40,7 @@
             <th>Комментарий</th><td>{{ $rf->comment }}</td>
         </tr>
         <tr>
-            <th>Пользователь</th><td>{{ $user->name }}</td>
+            <th>Пользователь</th><td>{{ $rf->userName }}</td>
         </tr>
         <tbody>
         </tbody>

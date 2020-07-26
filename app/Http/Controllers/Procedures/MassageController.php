@@ -43,8 +43,9 @@ class MassageController extends Controller
 
     public function update(Request $request, Massage $massage)
     {
+        $massage->update($request->only(['comment']));
         if(Auth::user()->isAdmin()) {
-            $massage->update($request->only(['date', 'power', 'length', 'comment', 'id_visitor', 'comment']));
+            $massage->update($request->only(['date', 'power', 'length', 'id_visitor']));
         }
         return redirect()->route('massage.show', $massage)->with('status', 'Информация изменена');
     }
@@ -52,13 +53,18 @@ class MassageController extends Controller
     public function show(Massage $massage)
     {
         $visitor = Visitor::where('id', $massage->id_visitor)->first();
-        $user = User::where('id', $massage->id_user)->first();
-        return view('massage.show', compact('visitor', 'massage', 'user'));
+        $user = User::find($massage->id_user);
+        if($user) {
+            $massage->userName = $user->name;
+        } else {
+            $massage->userName = 'Сотрудник удалён';
+        }
+        return view('massage.show', compact('visitor', 'massage'));
     }
 
 
     public function destroy(Massage $massage)
-    {   
+    {
         $id = $massage->id_visitor;
         if(Auth::user()->isAdmin()) {
             $massage->delete();

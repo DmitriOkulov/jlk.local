@@ -50,7 +50,7 @@
     @php
         $vs = $visitor->id;
     @endphp
-    <h2>Параметры</h2>  
+    <h2>Параметры</h2>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -103,7 +103,7 @@
     </table>
     <p><a href="{{ route('weights.create') }}?visitor={{ $vs }}" class="btn btn-success">Добавить измерение</a></p>
 
-    <h2>Противопоказания</h2>  
+    <h2>Противопоказания</h2>
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -146,19 +146,21 @@
             <th>Мощность</th>
             <th>Продолжительность</th>
             <th>Комментарии</th>
+            <th>Сотрудник</th>
         </tr>
         </thead>
         <tbody>
-        @foreach ($massage as $visitor)
+        @foreach ($massage as $mass)
             <tr>
-                <td><a href="{{ route('massage.show', $visitor) }}">
-                    @if ($visitor->date)
-                        {{ date('d.m.Y', strtotime($visitor->date)) }}
+                <td><a href="{{ route('massage.show', $mass) }}">
+                    @if ($mass->date)
+                        {{ date('d.m.Y', strtotime($mass->date)) }}
                     @endif
                 </a></td>
-                <td><a href="{{ route('massage.show', $visitor) }}">{{ $visitor->power }}</a></td>
-                <td><a href="{{ route('massage.show', $visitor) }}">{{ $visitor->length }}</a></td>
-                <td><a href="{{ route('massage.show', $visitor) }}">{{ $visitor->comment }}</a></td>
+                <td><a href="{{ route('massage.show', $mass) }}">{{ $mass->power }}</a></td>
+                <td><a href="{{ route('massage.show', $mass) }}">{{ $mass->length }}</a></td>
+                <td><a href="{{ route('massage.show', $mass) }}">{{ $mass->comment }}</a></td>
+                <td><a href="{{ route('massage.show', $mass) }}">{{ $mass->userName }}</a></td>
             </tr>
         @endforeach
         </tbody>
@@ -175,21 +177,23 @@
             <th>Гц</th>
             <th>мс</th>
             <th>Комментарии</th>
+            <th>Сотрудник</th>
         </tr>
         </thead>
         <tbody>
-        @foreach ($laserepilation as $visitor)
+        @foreach ($laserepilation as $laser)
             <tr>
-                <td><a href="{{ route('laserepilation.show', $visitor) }}">
-                    @if ($visitor->date)
-                        {{ date('d.m.Y', strtotime($visitor->date)) }}
+                <td><a href="{{ route('laserepilation.show', $laser) }}">
+                    @if ($laser->date)
+                        {{ date('d.m.Y', strtotime($laser->date)) }}
                     @endif
                 </a></td>
-                <td><a href="{{ route('laserepilation.show', $visitor) }}">{{ $visitor->percent }}</a></td>
-                <td><a href="{{ route('laserepilation.show', $visitor) }}">{{ $visitor->zone }}</a></td>
-                <td><a href="{{ route('laserepilation.show', $visitor) }}">{{ $visitor->gc }}</a></td>
-                <td><a href="{{ route('laserepilation.show', $visitor) }}">{{ $visitor->ms }}</a></td>
-                <td><a href="{{ route('laserepilation.show', $visitor) }}">{{ $visitor->comment }}</a></td>
+                <td><a href="{{ route('laserepilation.show', $laser) }}">{{ $laser->percent }}</a></td>
+                <td><a href="{{ route('laserepilation.show', $laser) }}">{{ $laser->zone }}</a></td>
+                <td><a href="{{ route('laserepilation.show', $laser) }}">{{ $laser->gc }}</a></td>
+                <td><a href="{{ route('laserepilation.show', $laser) }}">{{ $laser->ms }}</a></td>
+                <td><a href="{{ route('laserepilation.show', $laser) }}">{{ $laser->comment }}</a></td>
+                <td><a href="{{ route('laserepilation.show', $laser) }}">{{ $laser->userName }}</a></td>
             </tr>
         @endforeach
         </tbody>
@@ -203,18 +207,20 @@
             <th>Дата</th>
             <th>Зона</th>
             <th>Комментарии</th>
+            <th>Сотрудник</th>
         </tr>
         </thead>
         <tbody>
-        @foreach ($cryolipoliz as $visitor)
+        @foreach ($cryolipoliz as $cryo)
             <tr>
-                <td><a href="{{ route('cryolipoliz.show', $visitor) }}">
-                    @if ($visitor->date)
-                        {{ date('d.m.Y', strtotime($visitor->date)) }}
+                <td><a href="{{ route('cryolipoliz.show', $cryo) }}">
+                    @if ($cryo->date)
+                        {{ date('d.m.Y', strtotime($cryo->date)) }}
                     @endif
                 </a></td>
-                <td><a href="{{ route('cryolipoliz.show', $visitor) }}">{{ $visitor->zone }}</a></td>
-                <td><a href="{{ route('cryolipoliz.show', $visitor) }}">{{ $visitor->comment }}</a></td>
+                <td><a href="{{ route('cryolipoliz.show', $cryo) }}">{{ $cryo->zone }}</a></td>
+                <td><a href="{{ route('cryolipoliz.show', $cryo) }}">{{ $cryo->comment }}</a></td>
+                <td><a href="{{ route('cryolipoliz.show', $cryo) }}">{{ $cryo->userName }}</a></td>
             </tr>
         @endforeach
         </tbody>
@@ -230,20 +236,22 @@
             <th>Ягодицы</th>
             <th>Бедра</th>
             <th>Комментарии</th>
+            <th>Сотрудник</th>
         </tr>
         </thead>
         <tbody>
-        @foreach ($rf as $visitor)
+        @foreach ($rf as $r)
             <tr>
-                <td><a href="{{ route('rf.show', $visitor) }}">
-                    @if ($visitor->date)
-                        {{ date('d.m.Y', strtotime($visitor->date)) }}
+                <td><a href="{{ route('rf.show', $r) }}">
+                    @if ($r->date)
+                        {{ date('d.m.Y', strtotime($r->date)) }}
                     @endif
                 </a></td>
-                <td><a href="{{ route('rf.show', $visitor) }}">{{ $visitor->stomach }}</a></td>
-                <td><a href="{{ route('rf.show', $visitor) }}">{{ $visitor->ass }}</a></td>
-                <td><a href="{{ route('rf.show', $visitor) }}">{{ $visitor->hips }}</a></td>
-                <td><a href="{{ route('rf.show', $visitor) }}">{{ $visitor->comment }}</a></td>
+                <td><a href="{{ route('rf.show', $r) }}">{{ $r->stomach }}</a></td>
+                <td><a href="{{ route('rf.show', $r) }}">{{ $r->ass }}</a></td>
+                <td><a href="{{ route('rf.show', $r) }}">{{ $r->hips }}</a></td>
+                <td><a href="{{ route('rf.show', $r) }}">{{ $r->comment }}</a></td>
+                <td><a href="{{ route('rf.show', $r) }}">{{ $r->userName }}</a></td>
             </tr>
         @endforeach
         </tbody>
@@ -259,20 +267,22 @@
             <th>Ягодицы</th>
             <th>Бедра</th>
             <th>Комментарии</th>
+            <th>Сотрудник</th>
         </tr>
         </thead>
         <tbody>
-        @foreach ($cavitation as $visitor)
+        @foreach ($cavitation as $cavi)
             <tr>
-                <td><a href="{{ route('cavitation.show', $visitor) }}">
-                    @if ($visitor->date)
-                        {{ date('d.m.Y', strtotime($visitor->date)) }}
+                <td><a href="{{ route('cavitation.show', $cavi) }}">
+                    @if ($cavi->date)
+                        {{ date('d.m.Y', strtotime($cavi->date)) }}
                     @endif
                 </a></td>
-                <td><a href="{{ route('cavitation.show', $visitor) }}">{{ $visitor->stomach }}</a></td>
-                <td><a href="{{ route('cavitation.show', $visitor) }}">{{ $visitor->ass }}</a></td>
-                <td><a href="{{ route('cavitation.show', $visitor) }}">{{ $visitor->hips }}</a></td>
-                <td><a href="{{ route('cavitation.show', $visitor) }}">{{ $visitor->comment }}</a></td>
+                <td><a href="{{ route('cavitation.show', $cavi) }}">{{ $cavi->stomach }}</a></td>
+                <td><a href="{{ route('cavitation.show', $cavi) }}">{{ $cavi->ass }}</a></td>
+                <td><a href="{{ route('cavitation.show', $cavi) }}">{{ $cavi->hips }}</a></td>
+                <td><a href="{{ route('cavitation.show', $cavi) }}">{{ $cavi->comment }}</a></td>
+                <td><a href="{{ route('cavitation.show', $cavi) }}">{{ $cavi->userName }}</a></td>
             </tr>
         @endforeach
         </tbody>
@@ -288,20 +298,22 @@
             <th>Зона</th>
             <th>Программа</th>
             <th>Комментарии</th>
+            <th>Сотрудник</th>
         </tr>
         </thead>
         <tbody>
-        @foreach ($miostimulation as $visitor)
+        @foreach ($miostimulation as $mio)
             <tr>
-                <td><a href="{{ route('miostimulation.show', $visitor) }}">
-                    @if ($visitor->date)
-                        {{ date('d.m.Y', strtotime($visitor->date)) }}
+                <td><a href="{{ route('miostimulation.show', $mio) }}">
+                    @if ($mio->date)
+                        {{ date('d.m.Y', strtotime($mio->date)) }}
                     @endif
                 </a></td>
-                <td><a href="{{ route('miostimulation.show', $visitor) }}">{{ $visitor->power }}</a></td>
-                <td><a href="{{ route('miostimulation.show', $visitor) }}">{{ $visitor->zone }}</a></td>
-                <td><a href="{{ route('miostimulation.show', $visitor) }}">{{ $visitor->program }}</a></td>
-                <td><a href="{{ route('miostimulation.show', $visitor) }}">{{ $visitor->comment }}</a></td>
+                <td><a href="{{ route('miostimulation.show', $mio) }}">{{ $mio->power }}</a></td>
+                <td><a href="{{ route('miostimulation.show', $mio) }}">{{ $mio->zone }}</a></td>
+                <td><a href="{{ route('miostimulation.show', $mio) }}">{{ $mio->program }}</a></td>
+                <td><a href="{{ route('miostimulation.show', $mio) }}">{{ $mio->comment }}</a></td>
+                <td><a href="{{ route('miostimulation.show', $mio) }}">{{ $mio->userName }}</a></td>
             </tr>
         @endforeach
         </tbody>

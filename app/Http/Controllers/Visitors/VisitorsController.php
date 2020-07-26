@@ -31,7 +31,7 @@ class VisitorsController extends Controller
         } else {
             $visitors = Visitor::orderBy('id', 'asc')->paginate(50);
         }
-        
+
 
         return view('visitors.index', compact('visitors'));
     }
@@ -66,6 +66,7 @@ class VisitorsController extends Controller
     public function show(Visitor $visitor)
     {
         $weights = Weight::where('id_visitor', $visitor->id)->get();
+
         $massage = Massage::where('id_visitor', $visitor->id)->get();
         $miostimulation = Miostimulation::where('id_visitor', $visitor->id)->get();
         $laserepilation = LaserEpilation::where('id_visitor', $visitor->id)->get();
@@ -73,18 +74,84 @@ class VisitorsController extends Controller
         $cryolipoliz = Cryolipoliz::where('id_visitor', $visitor->id)->get();
         $cavitation = Cavitation::where('id_visitor', $visitor->id)->get();
         $rf = RF::where('id_visitor', $visitor->id)->get();
-        //сюда бы ещё юзера добавить
+
+        //Цикл переделать
+        foreach($massage as &$item) {
+            $user = User::find($item->id_user);
+            if($user) {
+                $item->userName = $user->name;
+            } else {
+                $item->userName = 'Сотрудник удалён';
+            }
+        }
+
+        foreach($miostimulation as &$item) {
+            $user = User::find($item->id_user);
+
+            if($user) {
+                $item->userName = $user->name;
+            } else {
+                $item->userName = 'Сотрудник удалён';
+            }
+        }
+
+        foreach($laserepilation as &$item) {
+            $user = User::find($item->id_user);
+            if($user) {
+                $item->userName = $user->name;
+            } else {
+                $item->userName = 'Сотрудник удалён';
+            }
+        }
+
+        foreach($contraindication as &$item) {
+            $user = User::find($item->id_user);
+            if($user) {
+                $item->userName = $user->name;
+            } else {
+                $item->userName = 'Сотрудник удалён';
+            }
+        }
+
+        foreach($cryolipoliz as &$item) {
+            $user = User::find($item->id_user);
+            if($user) {
+                $item->userName = $user->name;
+            } else {
+                $item->userName = 'Сотрудник удалён';
+            }
+        }
+
+        foreach($cavitation as &$item) {
+            $user = User::find($item->id_user);
+            if($user) {
+                $item->userName = $user->name;
+            } else {
+                $item->userName = 'Сотрудник удалён';
+            }
+        }
+
+        foreach($rf as &$item) {
+            $user = User::find($item->id_user);
+            if($user) {
+                $item->userName = $user->name;
+            } else {
+                $item->userName = 'Сотрудник удалён';
+            }
+        }
+
+
         return view('visitors.show', compact('visitor', 'weights', 'massage', 'miostimulation', 'laserepilation', 'contraindication', 'cryolipoliz', 'cavitation', 'rf'));
 
     }
 
 
     public function destroy(Visitor $visitor)
-    {   
+    {
         if(Auth::user()->isAdmin()) {
             $visitor->delete();
         }
-        
+
         return redirect()->route('visitors.index');
     }
 

@@ -44,8 +44,9 @@ class RFController extends Controller
 
     public function update(Request $request, RF $rf)
     {
+        $rf->update($request->only(['comment']));
         if(Auth::user()->isAdmin()) {
-            $rf->update($request->only(['date', 'stomach', 'ass', 'hips', 'id_user', 'id_visitor', 'comment']));
+            $rf->update($request->only(['date', 'stomach', 'ass', 'hips', 'id_user', 'id_visitor']));
         }
         return redirect()->route('rf.show', $rf)->with('status', 'Информация изменена');
     }
@@ -53,13 +54,18 @@ class RFController extends Controller
     public function show(RF $rf)
     {
         $visitor = Visitor::where('id', $rf->id_visitor)->first();
-        $user = User::where('id', $rf->id_user)->first();
-        return view('rf.show', compact('visitor', 'rf', 'user'));
+        $user = User::find($rf->id_user);
+        if($user) {
+            $rf->userName = $user->name;
+        } else {
+            $rf->userName = 'Сотрудник удалён';
+        }
+        return view('rf.show', compact('visitor', 'rf'));
     }
 
 
     public function destroy(RF $rf)
-    {   
+    {
         $id = $rf->id_visitor;
         if(Auth::user()->isAdmin()) {
             $rf->delete();

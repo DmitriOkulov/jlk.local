@@ -43,8 +43,9 @@ class LaserEpilationController extends Controller
 
     public function update(Request $request, LaserEpilation $laserepilation)
     {
+        $laserepilation->update($request->only(['comment']));
         if(Auth::user()->isAdmin()) {
-            $laserepilation->update($request->only(['date', 'percent', 'comment', 'id_user', 'id_visitor', 'zone', 'ms', 'gc']));
+            $laserepilation->update($request->only(['date', 'percent', 'id_user', 'id_visitor', 'zone', 'ms', 'gc']));
         }
         return redirect()->route('laserepilation.show', $laserepilation)->with('status', 'Информация изменена');
     }
@@ -52,13 +53,18 @@ class LaserEpilationController extends Controller
     public function show(LaserEpilation $laserepilation)
     {
         $visitor = Visitor::where('id', $laserepilation->id_visitor)->first();
-        $user = User::where('id', $laserepilation->id_user)->first();
-        return view('laserepilation.show', compact('visitor', 'laserepilation', 'user'));
+        $user = User::find($laserepilation->id_user);
+        if($user) {
+            $laserepilation->userName = $user->name;
+        } else {
+            $laserepilation->userName = 'Сотрудник удалён';
+        }
+        return view('laserepilation.show', compact('visitor', 'laserepilation'));
     }
 
 
     public function destroy(LaserEpilation $laserepilation)
-    {   
+    {
         $id = $laserepilation->id_visitor;
         if(Auth::user()->isAdmin()) {
             $laserepilation->delete();

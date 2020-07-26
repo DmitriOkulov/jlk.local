@@ -43,8 +43,9 @@ class CryolipolizController extends Controller
 
     public function update(Request $request, Cryolipoliz $cryolipoliz)
     {
+        $cryolipoliz->update($request->only(['comment']));
         if(Auth::user()->isAdmin()) {
-            $cryolipoliz->update($request->only(['date', 'zone', 'id_user', 'id_visitor', 'comment']));
+            $cryolipoliz->update($request->only(['date', 'zone', 'id_user', 'id_visitor']));
         }
         return redirect()->route('cryolipoliz.show', $cryolipoliz)->with('status', 'Информация изменена');
     }
@@ -52,13 +53,18 @@ class CryolipolizController extends Controller
     public function show(Cryolipoliz $cryolipoliz)
     {
         $visitor = Visitor::where('id', $cryolipoliz->id_visitor)->first();
-        $user = User::where('id', $cryolipoliz->id_user)->first();
-        return view('cryolipoliz.show', compact('visitor', 'cryolipoliz', 'user'));
+        $user = User::find($cryolipoliz->id_user);
+        if($user) {
+            $cryolipoliz->userName = $user->name;
+        } else {
+            $cryolipoliz->userName = 'Сотрудник удалён';
+        }
+        return view('cryolipoliz.show', compact('visitor', 'cryolipoliz'));
     }
 
 
     public function destroy(Cryolipoliz $cryolipoliz)
-    {   
+    {
         $id = $cryolipoliz->id_visitor;
         if(Auth::user()->isAdmin()) {
             $cryolipoliz->delete();

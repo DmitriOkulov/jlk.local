@@ -44,8 +44,9 @@ class CavitationController extends Controller
 
     public function update(Request $request, Cavitation $cavitation)
     {
+        $cavitation->update($request->only(['comment']));
         if(Auth::user()->isAdmin()) {
-            $cavitation->update($request->only(['date', 'stomach', 'ass', 'hips', 'id_user', 'id_visitor', 'comment']));
+            $cavitation->update($request->only(['date', 'stomach', 'ass', 'hips', 'id_user', 'id_visitor']));
         }
         return redirect()->route('cavitation.show', $cavitation)->with('status', 'Информация изменена');
     }
@@ -53,13 +54,19 @@ class CavitationController extends Controller
     public function show(Cavitation $cavitation)
     {
         $visitor = Visitor::where('id', $cavitation->id_visitor)->first();
-        $user = User::where('id', $cavitation->id_user)->first();
-        return view('cavitation.show', compact('visitor', 'cavitation', 'user'));
+        $user = User::find($cavitation->id_user);
+        if($user) {
+            $cavitation->userName = $user->name;
+        } else {
+            $cavitation->userName = 'Сотрудник удалён';
+        }
+
+        return view('cavitation.show', compact('visitor', 'cavitation'));
     }
 
 
     public function destroy(Cavitation $cavitation)
-    {   
+    {
         $id = $cavitation->id_visitor;
         if(Auth::user()->isAdmin()) {
             $cavitation->delete();
