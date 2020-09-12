@@ -73,21 +73,23 @@
         @foreach ($weights as $weight)
             <tr>
                 <td>
-                    @if ($weight->date)
-                        {{ date('d.m.Y', strtotime($weight->date)) }}
-                    @endif
+                    <a href="{{ route('weights.show', $weight) }}">
+                        @if ($weight->date)
+                            {{ date('d.m.Y', strtotime($weight->date)) }}
+                        @endif
+                    </a>
                 </td>
-                <td>{{ $weight->weight }}</td>
-                <td>{{ $weight->left_triceps }}</td>
-                <td>{{ $weight->right_triceps }}</td>
-                <td>{{ $weight->waist }}</td>
-                <td>{{ $weight->sides }}</td>
-                <td>{{ $weight->ass }}</td>
-                <td>{{ $weight->left_hip }}</td>
-                <td>{{ $weight->right_hip }}</td>
-                <td>{{ $weight->left_calf }}</td>
-                <td>{{ $weight->right_calf }}</td>
-                <td>{{ $weight->comment }}</td>
+                <td><a href="{{ route('weights.show', $weight) }}">{{ $weight->weight }}</a></td>
+                <td><a href="{{ route('weights.show', $weight) }}">{{ $weight->left_triceps }}</a></td>
+                <td><a href="{{ route('weights.show', $weight) }}">{{ $weight->right_triceps }}</a></td>
+                <td><a href="{{ route('weights.show', $weight) }}">{{ $weight->waist }}</a></td>
+                <td><a href="{{ route('weights.show', $weight) }}">{{ $weight->sides }}</a></td>
+                <td><a href="{{ route('weights.show', $weight) }}">{{ $weight->ass }}</a></td>
+                <td><a href="{{ route('weights.show', $weight) }}">{{ $weight->left_hip }}</a></td>
+                <td><a href="{{ route('weights.show', $weight) }}">{{ $weight->right_hip }}</a></td>
+                <td><a href="{{ route('weights.show', $weight) }}">{{ $weight->left_calf }}</a></td>
+                <td><a href="{{ route('weights.show', $weight) }}">{{ $weight->right_calf }}</a></td>
+                <td><a href="{{ route('weights.show', $weight) }}">{{ $weight->comment }}</a></td>
                 <td>
                     @if (Auth::user()->isAdmin())
                         <form method="POST" action="{{ route('weights.destroy', $weight) }}" class="mr-1">

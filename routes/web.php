@@ -20,7 +20,7 @@ Route::get('/', function () {
     } else {
         return view('home');
     }
-    
+
 });
 
 Auth::routes(['register' => false]);
@@ -36,7 +36,7 @@ Route::resource('cryolipoliz', 'Procedures\CryolipolizController');
 Route::resource('rf', 'Procedures\RFController');
 Route::resource('cavitation', 'Procedures\CavitationController');
 
-Route::resource('weights', 'Visitors\WeightsController')->only(['store', 'destroy', 'create']);
+Route::resource('weights', 'Visitors\WeightsController')->except(['index', 'edit']);
 Route::resource('contraindication', 'Visitors\ContraindicationController')->only(['store', 'destroy', 'create']);
 
 Route::group(
