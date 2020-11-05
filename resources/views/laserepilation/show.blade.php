@@ -15,10 +15,12 @@
     <table class="table table-bordered table-striped">
         <tbody>
         <tr>
-            <th>Дата</th><td>
+            <th>Дата</th>
+            <td>
                 @if ($laserepilation->date)
                     {{ date('d.m.Y', strtotime($laserepilation->date)) }}
-                @endif</td>
+                @endif
+            </td>
         </tr>
         <tr>
             <th>Процент</th><td>{{ $laserepilation->percent }}</td>

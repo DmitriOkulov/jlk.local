@@ -30,7 +30,9 @@ class LaserEpilationController extends Controller
 
     public function store(Request $request)
     {
-        $laserepilation = new LaserEpilation($request->toArray());
+        $req = $request->toArray();
+        $req['zone'] = json_encode($req['zone']);
+        $laserepilation = new LaserEpilation($req);
         $laserepilation->save();
 
         return redirect()->route('laserepilation.show', $laserepilation);
@@ -38,14 +40,17 @@ class LaserEpilationController extends Controller
 
     public function edit(LaserEpilation $laserepilation)
     {
-        return view('laserepilation.edit', $laserepilation, compact('laserepilation'));
+        $laserepilation->zone = json_decode($laserepilation->zone, true);
+        return view('laserepilation.edit', compact('laserepilation'));
     }
 
     public function update(Request $request, LaserEpilation $laserepilation)
     {
         $laserepilation->update($request->only(['comment']));
         if(Auth::user()->isAdmin()) {
-            $laserepilation->update($request->only(['date', 'percent', 'id_user', 'id_visitor', 'zone', 'ms', 'gc']));
+            $laserepilation->update($request->only(['date', 'percent', 'id_user', 'id_visitor', 'ms', 'gc']));
+            $laserepilation->zone = json_encode($request->only(['zone']));
+            $laserepilation->save();
         }
         return redirect()->route('laserepilation.show', $laserepilation)->with('status', 'Информация изменена');
     }
@@ -59,6 +64,7 @@ class LaserEpilationController extends Controller
         } else {
             $laserepilation->userName = 'Сотрудник удалён';
         }
+        $laserepilation->zone = json_decode($laserepilation->zone, true);
         return view('laserepilation.show', compact('visitor', 'laserepilation'));
     }
 
