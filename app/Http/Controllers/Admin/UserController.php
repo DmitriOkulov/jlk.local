@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\LaserEpilation;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -56,19 +57,20 @@ class UserController extends Controller
         } else {
             $user->update(
                 array_merge(
-                    $request->only(['name', 'email']), 
+                    $request->only(['name', 'email']),
                     ['password' => bcrypt($request->password),]
                 )
             );
         }
-        
+
 
         return redirect()->route('admin.users.show', $user)->with('status', 'Информация изменена');;
     }
 
     public function show(User $user)
     {
-        return view('admin.users.show', compact('user'));
+        $laserEpilations = LaserEpilation::where('id_user', $user->id)->get();
+        return view('admin.users.show', compact('user', 'laserEpilations'));
     }
 
 

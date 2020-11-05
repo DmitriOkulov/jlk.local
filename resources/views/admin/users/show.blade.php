@@ -33,5 +33,27 @@
                 </tbody>
             </table>
 
-            
+            @if($laserEpilations)
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Зона</th>
+                        <th>Посетитель</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    @foreach ($laserEpilations as $item)
+                        <tr>
+                            <td>{{ $item->date }}</td>
+                            <td>{{ $item->zone }}</td>
+                            <td><a href="{{ route('visitors.show', $item->id_visitor) }}">Визитёр</a></td>
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
+            @endif
+
 @endsection
