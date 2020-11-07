@@ -22,9 +22,68 @@
         </div>
 
         <div class="form-group">
-            <label for="zone" class="col-form-label">Зоны</label>
-            <input id="zone" class="form-control{{ $errors->has('zone') ? ' is-invalid' : '' }}" name="zone" type="text" value="{{ old('zone', $laserepilation->zone) }}" required>
-            @if ($errors->has('name'))
+            <label for="zone" class="col-form-label {{ $errors->has('zone') ? ' is-invalid' : '' }}">Зоны</label>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Стрижка женская" @if(old('zone', json_decode($laserepilation->zone, true))) @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Стрижка женская') checked @endif @endforeach @endif><span> Стрижка женская</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Маникюр" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Маникюр') checked @endif @endforeach @endif><span> Маникюр</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Голени с коленями" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Голени с коленями') checked @endif @endforeach @endif><span> Голени с коленями</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Бедра полностью" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Бедра полностью') checked @endif @endforeach @endif><span> Бедра полностью</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Ноги полностью" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Ноги полностью') checked @endif @endforeach @endif><span> Ноги полностью</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Ягодицы" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Ягодицы') checked @endif @endforeach @endif><span> Ягодицы</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Подмышки" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Подмышки') checked @endif @endforeach @endif><span> Подмышки</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Руки полностью" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Руки полностью') checked @endif @endforeach @endif><span> Руки полностью</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Руки до локтя" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Руки до локтя') checked @endif @endforeach @endif><span> Руки до локтя</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Глубокое бикини" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Глубокое бикини') checked @endif @endforeach @endif><span> Глубокое бикини</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Верхняя губа, подбородок" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Верхняя губа, подбородок') checked @endif @endforeach @endif><span> Верхняя губа, подбородок</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Классическое бикини" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Классическое бикини') checked @endif @endforeach @endif><span> Классическое бикини</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Лицо полностью" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Лицо полностью') checked @endif @endforeach @endif><span> Лицо полностью</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Шея" @if(old('zone', json_decode($laserepilation->zone, true)))  @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Шея') checked @endif @endforeach @endif><span> Шея</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Щеки, бакенбарды" @if(old('zone', json_decode($laserepilation->zone, true))) @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Щеки, бакенбарды') checked @endif @endforeach @endif><span> Щеки, бакенбарды</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Грудь полностью" @if(old('zone', json_decode($laserepilation->zone, true))) @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Грудь полностью') checked @endif @endforeach @endif><span> Грудь полностью</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Ореолы" @if(old('zone', json_decode($laserepilation->zone, true))) @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Ореолы') checked @endif @endforeach @endif><span> Ореолы</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Спина полностью" @if(old('zone', json_decode($laserepilation->zone, true))) @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Спина полностью') checked @endif @endforeach @endif><span> Спина полностью</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Живот полностью" @if(old('zone', json_decode($laserepilation->zone, true))) @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Живот полностью') checked @endif @endforeach @endif><span> Живот полностью</span>
+            </div>
+            <div class="form_check">
+                <input name="zone[]" type="checkbox" value="Линия живота до пупка" @if(old('zone', json_decode($laserepilation->zone, true))) @foreach(old('zone', json_decode($laserepilation->zone, true)) as $zone) @if($zone=='Линия живота до пупка') checked @endif @endforeach @endif><span> Линия живота до пупка</span>
+            </div>
+            @if ($errors->has('zone'))
                 <span class="invalid-feedback"><strong>{{ $errors->first('zone') }}</strong></span>
             @endif
         </div>

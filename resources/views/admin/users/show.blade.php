@@ -39,6 +39,7 @@
                     <tr>
                         <th>Дата</th>
                         <th>Зона</th>
+                        <th>Старая зона</th>
                         <th>Посетитель</th>
                     </tr>
                     </thead>
@@ -47,7 +48,14 @@
                     @foreach ($laserEpilations as $item)
                         <tr>
                             <td>{{ $item->date }}</td>
-                            <td>{{ $item->zone }}</td>
+                            <td>
+                                @if(json_decode($item->zone, true))
+                                    @foreach(json_decode($item->zone, true) as $zone)
+                                        {{ $zone }}<br>
+                                    @endforeach
+                                @endif
+                            </td>
+                            <td>{{ $item->old_zone }}</td>
                             <td><a href="{{ route('visitors.show', $item->id_visitor) }}">Визитёр</a></td>
                         </tr>
                     @endforeach

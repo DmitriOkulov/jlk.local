@@ -176,6 +176,7 @@
             <th>Дата</th>
             <th>Процент</th>
             <th>Зона</th>
+            <th>Старая зона</th>
             <th>Гц</th>
             <th>мс</th>
             <th>Комментарии</th>
@@ -191,7 +192,14 @@
                     @endif
                 </a></td>
                 <td><a href="{{ route('laserepilation.show', $laser) }}">{{ $laser->percent }}</a></td>
-                <td><a href="{{ route('laserepilation.show', $laser) }}">{{ $laser->zone }}</a></td>
+                <td><a href="{{ route('laserepilation.show', $laser) }}">
+                    @if(json_decode($laser->zone, true))
+                        @foreach(json_decode($laser->zone, true) as $zone)
+                            {{ $zone }}<br>
+                        @endforeach
+                    @endif
+                </a></td>
+                <td><a href="{{ route('laserepilation.show', $laser) }}">{{ $laser->old_zone }}</a></td>
                 <td><a href="{{ route('laserepilation.show', $laser) }}">{{ $laser->gc }}</a></td>
                 <td><a href="{{ route('laserepilation.show', $laser) }}">{{ $laser->ms }}</a></td>
                 <td><a href="{{ route('laserepilation.show', $laser) }}">{{ $laser->comment }}</a></td>

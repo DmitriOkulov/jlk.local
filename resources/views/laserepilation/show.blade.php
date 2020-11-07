@@ -26,7 +26,18 @@
             <th>Процент</th><td>{{ $laserepilation->percent }}</td>
         </tr>
         <tr>
-            <th>Зоны</th><td>{{ $laserepilation->zone }}</td>
+            <th>Зоны</th>
+            <td>
+
+                @if(json_decode($laserepilation->zone, true))
+                    @foreach(json_decode($laserepilation->zone, true) as $zone)
+                        {{ $zone }}<br>
+                    @endforeach
+                @endif
+            </td>
+        </tr>
+        <tr>
+            <th>Старые зоны</th><td>{{ $laserepilation->old_zone }}</td>
         </tr>
         <tr>
             <th>мс</th><td>{{ $laserepilation->ms }}</td>
