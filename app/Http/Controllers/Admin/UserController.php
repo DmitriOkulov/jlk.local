@@ -73,9 +73,11 @@ class UserController extends Controller
         $laserEpilations = LaserEpilation::where('id_user', $user->id)->whereMonth('created_at', '11')->get();
 
         foreach($laserEpilations as $laser) {
-            $zone = json_decode($laser->zone, true);
-            foreach($zone as $z) {
-                $zones[$z]++;
+            if($laser->zone) {
+                $zone = json_decode($laser->zone, true);
+                foreach($zone as $z) {
+                    $zones[$z]++;
+                }
             }
         }
 
