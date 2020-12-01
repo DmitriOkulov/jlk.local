@@ -69,8 +69,18 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        $laserEpilations = LaserEpilation::where('id_user', $user->id)->get();
-        return view('admin.users.show', compact('user', 'laserEpilations'));
+        $zones = array_fill_keys(LaserEpilation::ZONES, 0);
+        $laserEpilations = LaserEpilation::where('id_user', $user->id)->whereMonth('created_at', '11')->get();
+
+        foreach($laserEpilations as $laser) {
+            $zone = json_decode($laser->zone, true);
+            foreach($zone as $z) {
+                $zones[$z]++;
+            }
+        }
+
+
+        return view('admin.users.show', compact('user', 'zones'));
     }
 
 
